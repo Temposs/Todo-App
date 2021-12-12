@@ -1,3 +1,16 @@
+.Show{
+  display:block;
+}
+.Hide{
+  display:none;
+}
+.Completed{
+  color:green;
+}
+.Uncompleted{
+  color:red;
+}
+
 .App {
   text-align: center;
 }

@@ -1,39 +1,35 @@
-import React,{useState} from 'react';
-import TodoForm from './TodoForm';
+import React from 'react';
 import {RiCloseCircleLine}  from 'react-icons/ri';
-import {TiEdit}  from 'react-icons/ti';
 
 
-function Todo({todos, completeTodo,removeTodo}) {
-    const [edit,setEdit]=useState({
-        id:null,
-        value:''
-    });
-
-    return todos.map((todo,index)=>(
-        <div 
-            className={todo.isComplete ? 'todo-row complete' :'todo-row'} 
-            key={index}
-        >
+function Todo({todo,removeTodo,todoComplete}) {
+    return (
+        <div className={todo.visibility ? 'Show' :'Hide'}>
             <div 
-                key={todo.id} 
-                onClick={()=>completeTodo(todo.id)}
+                className={todo.complete ? 'Completed' : 'Uncompleted'} 
+                key={todo.id}       
             >
-                {todo.text}
-            </div>  
+                <div onClick={()=> todoComplete(todo.id)}>
+                    <div>
+                        {todo.title}
+                    </div>  
+                    <div>
+                        {todo.text}
+                    </div>  
+                    <div>
+                        {todo.date}
+                    </div>  
+                </div>
 
-            <div className="icons">
-                <RiCloseCircleLine
-                    onClick={()=> removeTodo(todo.id)}
-                    className='delete-icon'
-                />
-                <TiEdit
-                    onClick={()=>setEdit({id:todo.id,value:todo.text})}
-                    className='edit-icon'
-                />
+                <div className="icons">
+                    <RiCloseCircleLine
+                        onClick={()=> removeTodo(todo.id)}
+                        className='delete-icon'
+                    />
+                </div>
             </div>
         </div>
-    ));
+    )
 }
 
 export default Todo
