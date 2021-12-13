@@ -1,5 +1,8 @@
 import React,{useState,useRef} from 'react'
 import {FiDelete}  from 'react-icons/fi';
+import {Typography,Grid,TextField, Container, Button} from '@material-ui/core'
+import {FormControl,FormControlLabel,Stack,RadioGroup,Radio} from '@mui/material'
+import { grid } from '@mui/system';
 
 function TodoFilter({filter}) {
     const [radio,setInputRadio]=useState('all')
@@ -33,46 +36,48 @@ function TodoFilter({filter}) {
     }
 
     return (
-        <div>
-            <form>
-                <div>
-                    <input 
+        <Container maxWidth="xs">
+            <FormControl>
+                <Grid container justifyContent='center'>
+                    <Grid item >
+                        <TextField 
+                        label="Search"
                         onChange={HandleSearchChange} 
                         type="input"
-                        ref={inputSearchRef}
-                    />
-                    <FiDelete onClick={clearSearch}/>
-                </div>
-                
-                <div>
-                    <label htmlFor="all">All </label>
-                    <input 
-                        onChange={handleRadioChange}  
-                        id="all"
-                        value="all"
-                        type="radio" 
-                        checked={radio==='all'}
-                    />
-                    <label htmlFor="completed">Completed</label>
-                    <input 
-                        onChange={handleRadioChange} 
-                        id="completed"
-                        value="completed"
-                        type="radio" 
-                        checked={radio==='completed'}
-                    />
-                    
-                    <label htmlFor="uncompleted">Uncompleted</label>
-                    <input 
-                        id="uncompleted"
-                        value="uncompleted"
-                        type="radio" 
-                        onChange={handleRadioChange} 
-                        checked={radio==='uncompleted'}
-                    />
-                </div>
-            </form>
-        </div>
+                        margin='dense'
+                        inputRef={inputSearchRef} 
+                        />
+                        <Button style={{marginTop:'3%'}} variant="contained" onClick={clearSearch}>Clear</Button>
+                        {/* <FiDelete size="30px" /> */}
+                    </Grid>
+                    <Grid item >
+                        <RadioGroup row>
+                            <FormControlLabel 
+                                onChange={handleRadioChange} 
+                                value="all" 
+                                control={<Radio />} 
+                                label="All" 
+                                checked={radio==='all'}
+                            />
+                            <FormControlLabel 
+                                onChange={handleRadioChange} 
+                                value="completed" 
+                                control={<Radio />} 
+                                label="Completed" 
+                                checked={radio==='completed'}
+                            />
+                            <FormControlLabel 
+                                onChange={handleRadioChange} 
+                                value="uncompleted" 
+                                control={<Radio />} 
+                                label="Uncompleted" 
+                                checked={radio==='uncompleted'}
+                            />
+                        </RadioGroup>
+                    </Grid>
+                </Grid>
+            </FormControl>
+        </Container>
     )
 }
 

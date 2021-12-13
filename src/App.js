@@ -1,10 +1,13 @@
 import React,{useState} from "react";
 import uuidv4 from 'uuid/dist/v4'
-import './App.css';
 import TodoList from './components/TodoList';
 import TodoForm from "./components/TodoForm";
 import TodoFilter from "./components/TodoFilter";
-
+// import Button from '@mui/material/Button';
+import {Typography,AppBar,CssBaseline,
+Toolbar, Container} from '@material-ui/core'
+import { PhotoCamera } from "@material-ui/icons";
+import useStyles from "./components/styles";
 
 function App() {
   const [todos,setTodos]=useState([]);
@@ -12,12 +15,11 @@ function App() {
     search:'',
     radio:'all'
   })
-
+  const classes=useStyles()
   const removeTodo=(id)=>{
     const newTodos= todos.filter(todo=>todo.id!==id)
     setTodos(newTodos)
   }
-
 
   const filter=(filter)=>{
     setFilterObj({
@@ -103,12 +105,27 @@ function App() {
   }
   return(
     <>
-      <TodoForm onSubmit={formSubmit} />
-      <TodoFilter filter={filter}/>
-      <TodoList 
-        todos={todos} 
-        removeTodo={removeTodo} 
-        todoComplete={todoComplete}/>
+      <CssBaseline/>
+      <AppBar position="relative">
+        <Toolbar>
+          <Typography variant="h6">
+            Todo List
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <main>
+        <div>
+          <Container maxWidth="sm" className={classes.AppContainer}>
+            <TodoForm onSubmit={formSubmit} />
+            <TodoFilter filter={filter}/>
+          </Container>
+          <TodoList 
+            todos={todos} 
+            removeTodo={removeTodo} 
+            todoComplete={todoComplete}
+          />
+        </div>
+      </main>
     </>
   );
 }

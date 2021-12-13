@@ -1,4 +1,10 @@
-import React,{useState,useRef} from "react";
+import React,{useState,useRef} from "react"
+import {Typography,AppBar,Card,
+    CardActionArea,CardContent,
+    CardMedia,CssBaseline,Grid,
+  Toolbar,Button,TextField, Container} from '@material-ui/core'
+import { Stack } from '@mui/material';
+  
 
 function TodoForm({onSubmit}) {
     const [inputText,setText]=useState('');
@@ -40,38 +46,43 @@ function TodoForm({onSubmit}) {
     }
     
     return (
-        <div>
-            <h1> What's the Plan for Today?</h1>
-          <input
-              type="text"
-              placeholder="Add a todo"
-              value={inputText}
-              name="text"
-              className="todo-input"
-              onChange={handleTextChange}
-              ref={inputTextRef}
-          />
-          <input
-              type="text"
-              placeholder="Add a title"
-              value={inputTitle}
-              name="title"
-              className="title-input"
-              onChange={handleTitleChange}
-              ref={inputTitleRef}
-          />
-          <input
-              type="date"
-              value={inputDate}
-              name="date"
-              className="title-input"
-              onChange={handleDateChange}
-              ref={inputDateRef}
-          />
-          <button className='todo-button' onClick={addTodo}>
-              Add todo
-          </button>
-        </div>
+        <Container maxWidth='xs'>
+            <Stack spacing={2}>
+                <h1> What's the Plan for Today?</h1>
+                <TextField 
+                    style={{marginLeft:'10%',marginRight:'10%'}}
+                    label="Add title"
+                    value={inputTitle}
+                    name="title"
+                    onChange={handleTitleChange}
+                    inputRef={inputTitleRef}
+                />
+                <TextField
+                    style={{marginLeft:'10%',marginRight:'10%'}}
+                    label="Add a description"
+                    value={inputText}
+                    name="text"
+                    onChange={handleTextChange}
+                    inputRef={inputTextRef}
+                />
+                <TextField
+                    style={{marginLeft:'10%',marginRight:'10%'}}
+                    id="date"
+                    label="DeadLine"
+                    type="date"
+                    value={inputDate}
+                    onChange={handleDateChange}
+                    inputRef={inputDateRef}
+                    sx={{ width: 220 }}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                />
+                <Button variant="contained" onClick={addTodo}>
+                    Add todo
+                </Button>
+            </Stack>
+        </Container>
     )
 }
 
