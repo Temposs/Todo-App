@@ -8,7 +8,7 @@
   color:rgb(43, 196, 43);
 }
 .Uncompleted{
-  color:rgb(95, 95, 95);
+  color:rgb(138, 138, 138);
 }
 
 .App {
@@ -34,11 +34,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(200, 214, 253);
 }
 
 .App-link {
-  color: #61dafb;
+  color: #9e9fa0;
 }
 
 @keyframes App-logo-spin {

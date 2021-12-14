@@ -5,14 +5,17 @@ import Todo from './Todo'
 function TodoList({todos,removeTodo,todoComplete}) {
     return (
         todos.map(todo=>{
-            return (
-                <Todo
-                    key={todo.id}
-                    todo={todo}
-                    removeTodo={removeTodo}
-                    todoComplete={todoComplete}
-                />
-            )
+            if(todo.visibility){
+                return (
+                    <Todo
+                        key={todo.id}
+                        todo={todo}
+                        removeTodo={removeTodo}
+                        todoComplete={todoComplete}
+                    />
+                )
+            }
+            return
         })
     )
 }

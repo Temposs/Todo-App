@@ -1,29 +1,49 @@
 import React,{useState,useRef} from "react"
-import {Typography,AppBar,Card,
-    CardActionArea,CardContent,
-    CardMedia,CssBaseline,Grid,
-  Toolbar,Button,TextField, Container} from '@material-ui/core'
+import {Typography,Button,TextField, Container} from '@material-ui/core'
 import { Stack } from '@mui/material';
+import useStyles from "./styles";
   
 
 function TodoForm({onSubmit}) {
-    const [inputText,setText]=useState('');
-    const [inputTitle,setTitle]=useState('');
-    const [inputDate,setDate]=useState('');
+    const [inputText,setText]=useState('')
+    const [inputTitle,setTitle]=useState('')
+    const [inputDate,setDate]=useState('')
+    const [inputTitleError,setTitleError]=useState(false)
+    const [inputDescriptionError,setDescriptionError]=useState(false)
+    const [inputDateError,setDateError]=useState(false)
+
     const inputTextRef= useRef(null);
     const inputTitleRef=useRef(null);
     const inputDateRef=useRef(null);
-    
+
+    const classes=useStyles()
     
 
     const handleTextChange = e =>{
+        if(e.target.value===''&&inputDescriptionError){
+            setDescriptionError(true)
+        }else{
+            setDescriptionError(false)
+        }
         setText(e.target.value);
+        
     } 
     const handleTitleChange = e =>{
+        if(e.target.value===''&&inputTitleError){
+            setTitleError(true)
+        }else{
+            setTitleError(false)
+        }
         setTitle(e.target.value);
     } 
     const handleDateChange = e =>{
+        if(e.target.value===''&&inputDateError){
+            setDateError(true)
+        }else{
+            setDateError(false)
+        }
         setDate(e.target.value);
+
     } 
 
     const addTodo =()=>{
@@ -32,6 +52,9 @@ function TodoForm({onSubmit}) {
         const date=inputDateRef.current.value
 
         if(title===''||text===''||date===''){
+            if(date==='')setDateError(true)
+            if(text==='')setDescriptionError(true)
+            if(title==='')setTitleError(true)
             return
         }
         const obj={
@@ -39,6 +62,7 @@ function TodoForm({onSubmit}) {
             text:text,
             date:date
         };
+        
         setDate('')
         setTitle('')
         setText('')
@@ -46,27 +70,26 @@ function TodoForm({onSubmit}) {
     }
     
     return (
-        <Container maxWidth='xs'>
+        <Container className={classes.TodoFormContainer} maxWidth='xs'>
             <Stack spacing={2}>
-                <h1> What's the Plan for Today?</h1>
+                <Typography align='center' variant="h4">What's the Plan for Today?</Typography>
                 <TextField 
-                    style={{marginLeft:'10%',marginRight:'10%'}}
                     label="Add title"
                     value={inputTitle}
                     name="title"
                     onChange={handleTitleChange}
                     inputRef={inputTitleRef}
+                    error={inputTitleError}
                 />
                 <TextField
-                    style={{marginLeft:'10%',marginRight:'10%'}}
                     label="Add a description"
                     value={inputText}
                     name="text"
                     onChange={handleTextChange}
                     inputRef={inputTextRef}
+                    error={inputDescriptionError}
                 />
                 <TextField
-                    style={{marginLeft:'10%',marginRight:'10%'}}
                     id="date"
                     label="DeadLine"
                     type="date"
@@ -77,8 +100,12 @@ function TodoForm({onSubmit}) {
                     InputLabelProps={{
                     shrink: true,
                     }}
+                    error={inputDateError}
                 />
-                <Button variant="contained" onClick={addTodo}>
+                <Button 
+                    variant="contained" 
+                    onClick={addTodo}
+                >
                     Add todo
                 </Button>
             </Stack>

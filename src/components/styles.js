@@ -1,41 +1,45 @@
-import { Container } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles'
 
+
 const useStyles=makeStyles((theme)=>({
+    // Containers
     AppContainer:{
         backgroundColor:'rgb(184, 201, 248)',
         marginTop:"2%",
         borderRadius:'20px',
+        boxShadow: '1px 2px 4px #9e9fa0',
+    },
+    FilterContainer:{
+        marginTop:'5px',
+        border:'solid',
+        borderWidth:'1px 0px 0px 0px',
+        borderColor:'rgb(138, 138, 138)',
+    },
+    TodoFormContainer:{
+        padding:'0px 60px 10px 60px',
+    },
 
-    },
-    Container:{
+    // Completed/Uncompleted
+    CompletedTodoContainer:{
+        background: 'linear-gradient(90deg,rgb(184, 201, 248) 0%,rgb(209, 229, 252) 100%)',
         marginTop:'8px',
-        display:'block',
+        borderRadius:'10px',
+        boxShadow: '1px 2px 4px #9e9fa0',
     },
-    TodoComplete:{
-        background: 'linear-gradient(90deg,rgb(26, 112, 26) 0%,rgb(43, 196, 43) 100%)',
+    UncompletedTodoContainer:{
+        background: 'linear-gradient(90deg,rgb(200, 214, 253) 0%,rgb(232, 241, 252) 100%)',
         marginTop:'8px',
-        border:'solid 1px',
-        borderRadius:'20px',
+        borderRadius:'10px',
+        boxShadow: '1px 2px 4px #9e9fa0',
     },
-    TodoUncomplete:{
-        background: 'linear-gradient(90deg,rgb(119, 20, 20) 0%,rgb(231, 46, 46) 100%)',
-        marginTop:'8px',
-        border:'solid 1px',
-        borderRadius:'20px',
+    TodoCompleted:{    
+        opacity:'0.6',
+        textDecoration: 'line-through',
+    },  
+    DeadlineCompleted:{      
+        opacity:'0.6',
     },
-    removeTodoIcon:{
-        color:'black',
-        position:'relative',
-        transform:'translate(0%,-50%)',
-        top:'50%',
-    },
-    Show:{
-        display:'block',
-    },
-    Hide:{
-        display:'none'
-    },
+
 }));
 
 export default useStyles

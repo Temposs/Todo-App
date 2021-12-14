@@ -1,52 +1,73 @@
-import { Grid,Container,Typography, makeStyles} from '@material-ui/core';
-import { grid } from '@mui/system';
+import { Grid,Container,Typography,Button} from '@material-ui/core';
 import React from 'react';
-import {RiCloseCircleLine}  from 'react-icons/ri';
-import { Stack } from '@mui/material';
 import useStyles from './styles';
 
 function Todo({todo,removeTodo,todoComplete}) {
     const classes=useStyles()
 
     return (
-        <Container maxWidth='sm' 
-            className={todo.visibility ? classes.Container :classes.Hide}
-        >
+        <Container 
+            maxWidth='sm' 
+            className={ todo.complete ? classes.UncompletedTodoContainer: classes.CompletedTodoContainer}
+        >   
+        
             <Grid 
-            container
-            justifyContent='center' 
-            className={ todo.complete ? classes.TodoComplete: classes.TodoUncomplete}
+                container 
+                direction='row'
             >
-                <Stack direction='row'>
-                    <Grid container style={{backgroundColor:'white'}}>
-                        <Grid xs={10} onClick={()=> todoComplete(todo.id)}>
-                            <Grid xs={12}>
-                                <Stack justifyContent='center' spacing={3} direction='row'>
-                                    <Typography>
-                                        {todo.title}
-                                    </Typography>
-                                    <Typography>
-                                        {todo.date}
-                                    </Typography>
-                                </Stack>
-                            </Grid>
-
-                            <Grid container xs={12} justifyContent='center'>
-                                <Typography>
-                                    {todo.text}
-                                </Typography>
-                            </Grid>
-
+                <Grid 
+                    container item xs={10} 
+                    justifyContent='center' 
+                    onClick={()=> todoComplete(todo.id)}
+                >
+                    <Grid container justifyContent='center' direction='column'>
+                        <Grid 
+                            container 
+                            justifyContent='center' 
+                            className={ todo.complete ? classes.TodoCompleted: ''}
+                        >
+                            {/* Title */}
+                            <Typography variant='h5'>{todo.title}</Typography>
                         </Grid>
-                        <Grid container xs={2} justifyContent='center'>
-                            <RiCloseCircleLine
-                                size='35px'
-                                className={classes.removeTodoIcon}
-                                onClick={()=> removeTodo(todo.id)}
-                            />
+                        <Grid 
+                            container
+                            direction='row'                      
+                        >
+                            <Grid 
+                                item
+                                xs={3}
+                                className={ todo.complete ? classes.DeadlineCompleted: ''}
+                            >
+                                {/* Deadline */}
+                                <Typography>{todo.date}</Typography>
+                            </Grid>
+                            <Grid 
+                                container
+                                justifyContent='center'
+                                item
+                                xs={9}
+                                className={ todo.complete ? classes.TodoCompleted: ''}
+                            >
+                                {/* Description */}
+                                <Typography>{todo.text}</Typography>
+                            </Grid>
                         </Grid>
-                    </Grid> 
-                </Stack>
+                    </Grid>
+                </Grid>
+
+                <Grid 
+                    container 
+                    item 
+                    justifyContent='center'
+                    xs={2} 
+                >
+                    <Button 
+                        style={{margin:'2px 0px 2px 0px'}} 
+                        onClick={()=> removeTodo(todo.id)}
+                    >
+                        Delete Todo
+                    </Button>
+                </Grid>
             </Grid>
         </Container>
     )

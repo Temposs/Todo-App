@@ -6,7 +6,6 @@ import TodoFilter from "./components/TodoFilter";
 // import Button from '@mui/material/Button';
 import {Typography,AppBar,CssBaseline,
 Toolbar, Container} from '@material-ui/core'
-import { PhotoCamera } from "@material-ui/icons";
 import useStyles from "./components/styles";
 
 function App() {
@@ -26,13 +25,13 @@ function App() {
       search:filter.search,
       radio:filter.radio
     })
-    const myRegEx=new RegExp('^'+filter.search)
+    const myRegEx=new RegExp('^'+filter.search.toLowerCase())
     var newTodos
     switch(filter.radio){
       case 'all':
 
         newTodos=todos.map(todo=>{
-          if(myRegEx.test(todo.title)){
+          if(myRegEx.test(todo.title.toLowerCase())){
             todo.visibility=true
             return todo
           }else{
@@ -46,7 +45,7 @@ function App() {
       case 'completed':
 
         newTodos=todos.map(todo=>{
-          if(myRegEx.test(todo.title)&&todo.complete===true){
+          if(myRegEx.test(todo.title.toLowerCase())&&todo.complete===true){
             todo.visibility=true
             return todo
           }else{
@@ -60,7 +59,7 @@ function App() {
       case 'uncompleted':
 
         newTodos=todos.map(todo=>{
-          if(myRegEx.test(todo.title)&&todo.complete!==true){
+          if(myRegEx.test(todo.title.toLowerCase())&&todo.complete!==true){
             todo.visibility=true
             return todo
           }else{

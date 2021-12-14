@@ -1,14 +1,15 @@
 import React,{useState,useRef} from 'react'
-import {FiDelete}  from 'react-icons/fi';
 import {Typography,Grid,TextField, Container, Button} from '@material-ui/core'
-import {FormControl,FormControlLabel,Stack,RadioGroup,Radio} from '@mui/material'
-import { grid } from '@mui/system';
+import {FormControl,FormControlLabel,RadioGroup,Radio} from '@mui/material'
+import useStyle from './styles'
 
 function TodoFilter({filter}) {
     const [radio,setInputRadio]=useState('all')
 
     const inputSearchRef=useRef(null)
 
+    const classes=useStyle()
+    
     const HandleSearchChange=()=>{
  
         const newFilter={
@@ -36,10 +37,13 @@ function TodoFilter({filter}) {
     }
 
     return (
-        <Container maxWidth="xs">
-            <FormControl>
-                <Grid container justifyContent='center'>
-                    <Grid item >
+        <Container className={classes.FilterContainer}  maxWidth="xs" >
+            <FormControl >
+                <Grid container justifyContent='center' >
+                    <Grid item xs={12} >
+                        <Typography align='center' variant="h5">Filter</Typography>
+                    </Grid>
+                    <Grid  >
                         <TextField 
                         label="Search"
                         onChange={HandleSearchChange} 
@@ -47,10 +51,9 @@ function TodoFilter({filter}) {
                         margin='dense'
                         inputRef={inputSearchRef} 
                         />
-                        <Button style={{marginTop:'3%'}} variant="contained" onClick={clearSearch}>Clear</Button>
-                        {/* <FiDelete size="30px" /> */}
+                        <Button style={{marginTop:'5%'}} variant="contained" onClick={clearSearch}>Clear</Button>
                     </Grid>
-                    <Grid item >
+                    <Grid  >
                         <RadioGroup row>
                             <FormControlLabel 
                                 onChange={handleRadioChange} 
