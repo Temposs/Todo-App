@@ -4,7 +4,7 @@ import {makeStyles} from '@material-ui/core/styles'
 const useStyles=makeStyles((theme)=>({
     // Containers
     AppContainer:{
-        backgroundColor:'rgb(184, 201, 248)',
+        background: 'linear-gradient(90deg,rgb(184, 201, 248) 0%,rgb(209, 229, 252) 100%)',
         marginTop:"2%",
         borderRadius:'20px',
         boxShadow: '1px 2px 4px #9e9fa0',

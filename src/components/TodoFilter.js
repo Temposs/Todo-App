@@ -34,6 +34,12 @@ function TodoFilter({filter}) {
     const clearSearch =(e)=>{
         e.preventDefault()
         inputSearchRef.current.value=''
+
+        const newFilter={
+            search:inputSearchRef.current.value,
+            radio:radio
+        }
+        filter(newFilter)
     }
 
     return (
@@ -51,7 +57,7 @@ function TodoFilter({filter}) {
                         margin='dense'
                         inputRef={inputSearchRef} 
                         />
-                        <Button style={{marginTop:'5%'}} variant="contained" onClick={clearSearch}>Clear</Button>
+                        <Button style={{marginTop:'6%'}} onClick={clearSearch}>Clear</Button>
                     </Grid>
                     <Grid  >
                         <RadioGroup row>

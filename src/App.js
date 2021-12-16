@@ -1,12 +1,12 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react"
 import uuidv4 from 'uuid/dist/v4'
-import TodoList from './components/TodoList';
-import TodoForm from "./components/TodoForm";
-import TodoFilter from "./components/TodoFilter";
+import TodoList from './components/TodoList'
+import TodoForm from "./components/TodoForm"
+import TodoFilter from "./components/TodoFilter"
 // import Button from '@mui/material/Button';
 import {Typography,AppBar,CssBaseline,
 Toolbar, Container} from '@material-ui/core'
-import useStyles from "./components/styles";
+import useStyles from "./components/styles"
 
 function App() {
   const [todos,setTodos]=useState([]);
@@ -15,10 +15,22 @@ function App() {
     radio:'all'
   })
   const classes=useStyles()
+
+
   const removeTodo=(id)=>{
     const newTodos= todos.filter(todo=>todo.id!==id)
     setTodos(newTodos)
   }
+
+  useEffect(()=>{
+    (async ()=>{
+      const url ='https://61b9eedc38f69a0017ce6390.mockapi.io/Todo'
+      const response = await fetch(url)
+      const decodeResponse = await response.json()
+    
+      setTodos(decodeResponse)
+    })()
+  },[])
 
   const filter=(filter)=>{
     setFilterObj({
@@ -125,6 +137,13 @@ function App() {
           />
         </div>
       </main>
+      <AppBar position="bottom" style={{top:'0px'}}>
+        <Toolbar>
+          <Typography variant="h6">
+            Footer
+          </Typography>
+        </Toolbar>
+      </AppBar>
     </>
   );
 }
