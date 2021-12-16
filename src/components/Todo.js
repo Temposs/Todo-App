@@ -1,6 +1,6 @@
-import { Grid,Container,Typography,Button} from '@material-ui/core';
-import React from 'react';
-import useStyles from './styles';
+import { Grid,Container,Typography,Button} from '@material-ui/core'
+import React from 'react'
+import useStyles from './componentsStyles/styles'
 
 function Todo({todo,removeTodo,todoComplete}) {
     const classes=useStyles()
@@ -10,7 +10,6 @@ function Todo({todo,removeTodo,todoComplete}) {
             maxWidth='sm' 
             className={ todo.complete ? classes.UncompletedTodoContainer: classes.CompletedTodoContainer}
         >   
-        
             <Grid 
                 container 
                 direction='row'

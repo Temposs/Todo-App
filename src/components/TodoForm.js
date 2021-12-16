@@ -1,20 +1,21 @@
 import React,{useState,useRef} from "react"
 import {Typography,Button,TextField, Container} from '@material-ui/core'
 import { Stack } from '@mui/material';
-import useStyles from "./styles";
+import useStyles from "./componentsStyles/styles";
   
 
 function TodoForm({onSubmit}) {
     const [inputText,setText]=useState('')
     const [inputTitle,setTitle]=useState('')
     const [inputDate,setDate]=useState('')
+
     const [inputTitleError,setTitleError]=useState(false)
     const [inputDescriptionError,setDescriptionError]=useState(false)
     const [inputDateError,setDateError]=useState(false)
 
-    const inputTextRef= useRef(null);
-    const inputTitleRef=useRef(null);
-    const inputDateRef=useRef(null);
+    const inputTextRef= useRef(null)
+    const inputTitleRef=useRef(null)
+    const inputDateRef=useRef(null)
 
     const classes=useStyles()
     
@@ -25,7 +26,7 @@ function TodoForm({onSubmit}) {
         }else{
             setDescriptionError(false)
         }
-        setText(e.target.value);
+        setText(e.target.value)
         
     } 
     const handleTitleChange = e =>{
@@ -34,7 +35,7 @@ function TodoForm({onSubmit}) {
         }else{
             setTitleError(false)
         }
-        setTitle(e.target.value);
+        setTitle(e.target.value)
     } 
     const handleDateChange = e =>{
         if(e.target.value===''&&inputDateError){
@@ -42,7 +43,7 @@ function TodoForm({onSubmit}) {
         }else{
             setDateError(false)
         }
-        setDate(e.target.value);
+        setDate(e.target.value)
 
     } 
 
@@ -66,7 +67,7 @@ function TodoForm({onSubmit}) {
         setDate('')
         setTitle('')
         setText('')
-        onSubmit(obj);
+        onSubmit(obj)
     }
     
     return (

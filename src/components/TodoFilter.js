@@ -1,7 +1,7 @@
 import React,{useState,useRef} from 'react'
 import {Typography,Grid,TextField, Container, Button} from '@material-ui/core'
 import {FormControl,FormControlLabel,RadioGroup,Radio} from '@mui/material'
-import useStyle from './styles'
+import useStyle from './componentsStyles/styles'
 
 function TodoFilter({filter}) {
     const [radio,setInputRadio]=useState('all')
@@ -36,7 +36,7 @@ function TodoFilter({filter}) {
         inputSearchRef.current.value=''
 
         const newFilter={
-            search:inputSearchRef.current.value,
+            search:'',
             radio:radio
         }
         filter(newFilter)

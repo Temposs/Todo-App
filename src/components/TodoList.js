@@ -14,8 +14,9 @@ function TodoList({todos,removeTodo,todoComplete}) {
                         todoComplete={todoComplete}
                     />
                 )
+            }else{
+                return <div key={todo.id}></div>
             }
-            return
         })
     )
 }

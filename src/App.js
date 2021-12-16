@@ -3,10 +3,9 @@ import uuidv4 from 'uuid/dist/v4'
 import TodoList from './components/TodoList'
 import TodoForm from "./components/TodoForm"
 import TodoFilter from "./components/TodoFilter"
-// import Button from '@mui/material/Button';
 import {Typography,AppBar,CssBaseline,
 Toolbar, Container} from '@material-ui/core'
-import useStyles from "./components/styles"
+import useStyles from "./components/componentsStyles/styles"
 
 function App() {
   const [todos,setTodos]=useState([]);
@@ -124,26 +123,15 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <main>
-        <div>
-          <Container maxWidth="sm" className={classes.AppContainer}>
-            <TodoForm onSubmit={formSubmit} />
-            <TodoFilter filter={filter}/>
-          </Container>
-          <TodoList 
-            todos={todos} 
-            removeTodo={removeTodo} 
-            todoComplete={todoComplete}
-          />
-        </div>
-      </main>
-      <AppBar position="bottom" style={{top:'0px'}}>
-        <Toolbar>
-          <Typography variant="h6">
-            Footer
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Container maxWidth="sm" className={classes.AppContainer}>
+        <TodoForm onSubmit={formSubmit} />
+        <TodoFilter filter={filter}/>
+      </Container>
+      <TodoList 
+        todos={todos} 
+        removeTodo={removeTodo} 
+        todoComplete={todoComplete}
+      />
     </>
   );
 }
