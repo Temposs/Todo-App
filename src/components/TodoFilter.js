@@ -4,15 +4,15 @@ import {FormControl,FormControlLabel,RadioGroup,Radio} from '@mui/material'
 import useStyle from './componentsStyles/styles'
 
 function TodoFilter({filter}) {
-    const [radio,setInputRadio]=useState('all')
+    const [radio,setInputRadio] = useState('all')
 
-    const inputSearchRef=useRef(null)
+    const inputSearchRef = useRef(null)
 
-    const classes=useStyle()
+    const classes = useStyle()
     
-    const HandleSearchChange=()=>{
+    const HandleSearchChange = () => {
  
-        const newFilter={
+        const newFilter = {
             search:inputSearchRef.current.value,
             radio:radio
         }
@@ -20,10 +20,10 @@ function TodoFilter({filter}) {
         filter(newFilter)
     }
 
-    const handleRadioChange= e =>{
+    const handleRadioChange = e => {
         setInputRadio(e.target.value)
 
-        const newFilter={
+        const newFilter = {
             search:inputSearchRef.current.value,
             radio:e.target.value
         }
@@ -31,11 +31,11 @@ function TodoFilter({filter}) {
         filter(newFilter)
     }
 
-    const clearSearch =(e)=>{
+    const clearSearch = (e) => {
         e.preventDefault()
         inputSearchRef.current.value=''
 
-        const newFilter={
+        const newFilter = {
             search:'',
             radio:radio
         }
@@ -43,44 +43,44 @@ function TodoFilter({filter}) {
     }
 
     return (
-        <Container className={classes.FilterContainer}  maxWidth="xs" >
+        <Container className = {classes.FilterContainer}  maxWidth = "xs" >
             <FormControl >
-                <Grid container justifyContent='center' >
-                    <Grid item xs={12} >
-                        <Typography align='center' variant="h5">Filter</Typography>
+                <Grid container justifyContent = 'center' >
+                    <Grid item xs = {12} >
+                        <Typography align = 'center' variant = "h5">Filter</Typography>
                     </Grid>
-                    <Grid  >
+                    <Grid>
                         <TextField 
-                        label="Search"
-                        onChange={HandleSearchChange} 
-                        type="input"
-                        margin='dense'
-                        inputRef={inputSearchRef} 
+                        label = "Search"
+                        onChange = {HandleSearchChange} 
+                        type = "input"
+                        margin = 'dense'
+                        inputRef = {inputSearchRef} 
                         />
-                        <Button style={{marginTop:'6%'}} onClick={clearSearch}>Clear</Button>
+                        <Button style = {{marginTop:'6%'}} onClick = {clearSearch}>Clear</Button>
                     </Grid>
                     <Grid  >
                         <RadioGroup row>
                             <FormControlLabel 
-                                onChange={handleRadioChange} 
-                                value="all" 
-                                control={<Radio />} 
-                                label="All" 
-                                checked={radio==='all'}
+                                onChange = {handleRadioChange} 
+                                value = "all" 
+                                control = {<Radio />} 
+                                label = "All" 
+                                checked = {radio === 'all'}
                             />
                             <FormControlLabel 
-                                onChange={handleRadioChange} 
-                                value="completed" 
-                                control={<Radio />} 
-                                label="Completed" 
-                                checked={radio==='completed'}
+                                onChange = {handleRadioChange} 
+                                value = "completed" 
+                                control = {<Radio />} 
+                                label = "Completed" 
+                                checked = {radio === 'completed'}
                             />
                             <FormControlLabel 
-                                onChange={handleRadioChange} 
-                                value="uncompleted" 
-                                control={<Radio />} 
-                                label="Uncompleted" 
-                                checked={radio==='uncompleted'}
+                                onChange = {handleRadioChange} 
+                                value = "uncompleted" 
+                                control = {<Radio />} 
+                                label = "Uncompleted" 
+                                checked = {radio === 'uncompleted'}
                             />
                         </RadioGroup>
                     </Grid>

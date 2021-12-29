@@ -35,9 +35,6 @@ const useStyles=makeStyles((theme)=>({
         opacity:'0.6',
         textDecoration: 'line-through',
     },  
-    DeadlineCompleted:{      
-        opacity:'0.6',
-    },
 
 }));
 

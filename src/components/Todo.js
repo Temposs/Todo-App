@@ -3,39 +3,39 @@ import React from 'react'
 import useStyles from './componentsStyles/styles'
 
 function Todo({todo,removeTodo,todoComplete}) {
-    const classes=useStyles()
+    const classes = useStyles()
 
     return (
         <Container 
-            maxWidth='sm' 
-            className={ todo.complete ? classes.UncompletedTodoContainer: classes.CompletedTodoContainer}
+            maxWidth = 'sm' 
+            className = { todo.complete ? classes.UncompletedTodoContainer : classes.CompletedTodoContainer}
         >   
             <Grid 
                 container 
-                direction='row'
+                direction = 'row'
             >
                 <Grid 
-                    container item xs={10} 
-                    justifyContent='center' 
-                    onClick={()=> todoComplete(todo.id)}
+                    container item xs = {10} 
+                    justifyContent = 'center' 
+                    onClick = {() => todoComplete(todo.id)}
                 >
-                    <Grid container justifyContent='center' direction='column'>
+                    <Grid container justifyContent = 'center' direction = 'column'>
                         <Grid 
                             container 
-                            justifyContent='center' 
-                            className={ todo.complete ? classes.TodoCompleted: ''}
+                            justifyContent = 'center' 
+                            className = { todo.complete ? classes.TodoCompleted : ''}
                         >
                             {/* Title */}
-                            <Typography variant='h5'>{todo.title}</Typography>
+                            <Typography variant = 'h5'>{todo.title}</Typography>
                         </Grid>
                         <Grid 
                             container
-                            direction='row'                      
+                            direction = 'row'                      
                         >
                             <Grid 
                                 item
-                                xs={3}
-                                className={ todo.complete ? classes.DeadlineCompleted: ''}
+                                xs = {3}
+                                className = { todo.complete ? classes.DeadlineCompleted : ''}
                             >
                                 {/* Deadline */}
                                 <Typography>{todo.date}</Typography>
@@ -44,8 +44,8 @@ function Todo({todo,removeTodo,todoComplete}) {
                                 container
                                 justifyContent='center'
                                 item
-                                xs={9}
-                                className={ todo.complete ? classes.TodoCompleted: ''}
+                                xs = {9}
+                                className = { todo.complete ? classes.TodoCompleted : ''}
                             >
                                 {/* Description */}
                                 <Typography>{todo.text}</Typography>
@@ -57,12 +57,12 @@ function Todo({todo,removeTodo,todoComplete}) {
                 <Grid 
                     container 
                     item 
-                    justifyContent='center'
-                    xs={2} 
+                    justifyContent = 'center'
+                    xs = {2} 
                 >
                     <Button 
-                        style={{margin:'2px 0px 2px 0px'}} 
-                        onClick={()=> removeTodo(todo.id)}
+                        style = {{margin:'2px 0px 2px 0px'}} 
+                        onClick = {() => removeTodo(todo.id)}
                     >
                         Delete Todo
                     </Button>
